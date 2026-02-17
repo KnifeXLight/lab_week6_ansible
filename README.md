@@ -21,17 +21,18 @@ Ansible requires an SSH connection to manage nodes. These commands create a loca
   ```bash
   ssh-keygen -t ed25519 -f ~/.ssh/aws -C "aws-lab-key"
 
-- **Import Key to AWS**: Runs a script to upload the public key to our AWS account so EC2 instances can be launched with it.
+- **Import Key to AWS**:
+  Runs a script to upload the public key to our AWS account so EC2 instances can be launched with it.
 
-```bash
-./scrips/import_lab_key ~/.ssh/aws.pub
-```
+  ```bash
+  ./scrips/import_lab_key ~/.ssh/aws.pub
+  ```
 
 - **Delete Key from AWS**: Removes the public key from AWS to clean up the environment.
 
-```bash
-./scrips/delete_lab_key
-```
+  ```bash
+  ./scrips/delete_lab_key
+  ```
 
 ### **2. Terraform Commands**
 Used to provision the VPC, Subnet, Security Groups, and EC2 instances. These are to be run from the `terraform/` directory.
@@ -39,36 +40,37 @@ Used to provision the VPC, Subnet, Security Groups, and EC2 instances. These are
 - Initialize:
 Prepares the directory and downloads the AWS provider plugins.
 
-```Bash
-terraform init
-```
+  ```Bash
+  terraform init
+  ```
 
 - Format:
 Rewrites configuration files to a canonical format and style.
 
-```Bash
-terraform fmt
-```
+  ```Bash
+  terraform fmt
+  ```
 
 - Validate:
 Checks the syntax of the .tf files.
-```bash
-terraform validate
-```
+
+  ```bash
+  terraform validate
+  ```
 
 - Plan:
 Generates an execution plan showing what infrastructure will be created.
 
-```bash
-terraform plan
-```
+  ```bash
+  terraform plan
+  ```
 
 - Apply:
 Executes the plan to create the 2 Debian EC2 instances.
 
-```bash
-terraform apply
-```
+  ```bash
+  terraform apply
+  ```
 
 ### **3. Ansible Commands**
 
@@ -77,19 +79,26 @@ Used to configure the software on the running instances. These should be run fro
 - Syntax Check:
 Verifies the playbook.yml file for any YAML syntax errors before execution.
 
-```bash
-ansible-playbook ansible/playbook.yml -i ansible/inventory/hosts.yml --syntax-check
-```
+  ```bash
+  ansible-playbook ansible/playbook.yml -i ansible/inventory/hosts.yml --syntax-check
+  ```
 
 - Run Playbook:
 Executes the tasks to install Nginx, copy configurations, and deploy the template.
 
-```bash
-ansible-playbook ansible/playbook.yml -i ansible/inventory/hosts.yml
-```
+  ```bash
+  ansible-playbook ansible/playbook.yml -i ansible/inventory/hosts.yml
+  ```
 
 ### **Web Page**
 Below is a screenshot of the `index.html` page served by Nginx on one of the EC2 instances. It shows that the configuration management was successful.
 
 ![alt text](Lab7_webserver.png)
 
+
+### **Project Cleanup**
+
+```bash
+cd tereraform
+terraform destroy
+```
