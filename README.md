@@ -93,8 +93,9 @@ Executes the tasks to install Nginx, copy configurations, and deploy the templat
 ### **Web Page**
 Below is a screenshot of the `index.html` page served by Nginx on one of the EC2 instances. It shows that the configuration management was successful.
 
+<p align="center">
 ![alt text](Lab7_webserver.png)
-
+</p>
 
 ### **Project Cleanup**
 
